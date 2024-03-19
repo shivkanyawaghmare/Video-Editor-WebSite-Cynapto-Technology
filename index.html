@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Video editing project</title>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+    <!-- Bootstrap Icons CSS CDN -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="cynapto.css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav hidden-xs">
+                <img src="pngwing.png" alt="Logo" class="logo">
+                <ul class="nav nav-pills nav-stacked">
+                    <li class="active"><a href="#" id="new-video-button">New Video +</a></li>
+                    <li><a href="cynapto.html">Home</a></li>
+                    <li><a href="#section3">Template</a></li>
+                    <li><a href="#section3">All Videos</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-9">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="well">
+                            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                <form class="form-inline my-2 my-lg-0">
+                                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                                    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <i class="bi bi-file-earmark-plus create"></i> Create Project
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <i class="bi bi-camera-video record"></i> Record video
+                        </div>
+                    </div>
+                </div>
+                <div class="row subheading" id="subheading-container" style="display: none;">
+                    <div class="col-sm-6">
+                        <span>My Recent Video</span>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <span>All video <i class="bi bi-chevron-compact-right"></i></span>
+                    </div>
+                </div>
+                <div class="row" id="recent-videos-container">
+                    <!-- Placeholder video elements -->
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <video src="" style="width: 100%; height: auto;" controls></video>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <video src="" style="width: 100%; height: auto;" controls></video>
+                        </div>
+                    </div>
+                    <div class="col-sm-4">
+                        <div class="well">
+                            <video src="" style="width: 100%; height: auto;" controls></video>
+                        </div>
+                    </div>
+                </div>
+                <div class="row subheading">
+                    <div class="col-sm-6">
+                        <span>&nbsp;&nbsp;&nbsp;Start with popular templates</span>
+                    </div>
+                    <div class="col-sm-6 text-right">
+                        <span>See All <i class="bi bi-chevron-compact-right"></i></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <img src="" style="width: 170px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <img src="" style="width: 170px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <img src="" style="width: 170px;">
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="well">
+                            <img src="" style="width: 170px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Hidden input element for uploading video -->
+    <input type="file" id="video-upload-input" style="display: none;" multiple>
+
+    <script>
+        // Get reference to the new video button
+const newVideoButton = document.getElementById('new-video-button');
+
+// Get references to DOM elements
+const subheadingContainer = document.getElementById('subheading-container');
+const recentVideosContainer = document.getElementById('recent-videos-container');
+const videoUploadInput = document.getElementById('video-upload-input');
+
+// Function to show subheading
+function showSubheading() {
+    subheadingContainer.style.display = 'block';
+}
+
+// Event listener for file upload
+videoUploadInput.addEventListener('change', (event) => {
+    // Get the uploaded files
+    const files = event.target.files;
+
+    // Iterate over the uploaded files
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+
+        // Create a new video element
+        const videoElement = document.createElement('video');
+        videoElement.src = URL.createObjectURL(file);
+        videoElement.controls = true;
+
+        // Apply styles to the video element
+        videoElement.style.width = '100%'; // Set width to 100% of the container
+        videoElement.style.height = 'auto'; // Maintain aspect ratio
+
+        // Create a new column for the video and add it to the container
+        const col = document.createElement('div');
+        col.className = 'col-sm-4';
+        col.innerHTML = `<div class="well"></div>`;
+        col.querySelector('.well').appendChild(videoElement);
+        recentVideosContainer.appendChild(col);
+    }
+
+    // Show the subheading after uploading the first video
+    showSubheading();
+});
+
+// Event listener for the "New Video +" button
+newVideoButton.addEventListener('click', () => {
+    // Simulate a click on the hidden file input element
+    videoUploadInput.click();
+});
+
+
+    </script>
+</body>
+
+</html>

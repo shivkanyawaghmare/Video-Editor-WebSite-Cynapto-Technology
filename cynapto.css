@@ -1,0 +1,50 @@
+.row.content {
+    height: 550px
+}
+
+.sidenav {
+    background-color: #f1f1f1;
+    height: 100%;
+}
+
+.subheading {
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+}
+
+@media screen and (max-width: 767px) {
+    .row.content {
+        height: auto;
+    }
+}
+
+.well i {
+    font-size: 2em;
+    padding: 10px;
+    border-radius: 50%;
+}
+
+.create {
+    background-color: #bca9e7;
+}
+
+.record {
+    background-color: #e7bda9;
+}
+
+.live {
+    background-color: #a9e7b9;
+}
+
+.precode {
+    background-color: #e7dda9;
+}
+
+.logo {
+    width: 100px;
+    height: auto; 
+}
+
+.logo {
+    display: block;  
+    margin: 0 auto; 
+}
